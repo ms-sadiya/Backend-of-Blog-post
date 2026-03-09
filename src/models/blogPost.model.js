@@ -15,7 +15,8 @@ const blogPostSchema = new Schema(
   tags: [
     {
       type: String,
-      trim: true
+      trim: true,
+      default: []
     }
   ],
   author: {

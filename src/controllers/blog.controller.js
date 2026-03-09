@@ -59,7 +59,7 @@ const getAllBlogPosts = asyncHandler(async (req, res) => {
 const getBlogById = asyncHandler(async (req, res) => {
   const { blogId } = req.params;
 
-  const blog = await BlogPost.findById(blogId).populate("author", "name email");
+  const blog = await BlogPost.findById(blogId).populate("author", "name");
 
   if (!blog) {
     throw new ApiError(404, "Blog not found");
@@ -73,7 +73,7 @@ const getBlogById = asyncHandler(async (req, res) => {
 // update blog post (only author can update this)
 const updateBlogPost = asyncHandler(async (req, res) => {
   const { blogId } = req.params;
-  const { title, content, tags } = req.body;
+  const { title, content, tags } = req.body || {};
 
   const blog = await BlogPost.findById(blogId);
 
