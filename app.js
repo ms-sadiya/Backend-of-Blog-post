@@ -1,27 +1,25 @@
-import express from "express"
-import cookieParser from "cookie-parser"
-import cors from "cors"
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import userRouter from "./src/routes/user.route.js";
 
-const app = express()
 
-//  Global Middlewares
+const app = express();
+
+// Global Middlewares
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "*",
     credentials: true,
-  }),
+  })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-import userRouter from "./src/routes/user.route.js";
+// Routes
+app.use("/api/v1/user", userRouter);
 
-app.use("/api/v1/user", userRouter)
-// app.get('/', (req, res) => {
-//   res.send('Blog Api is running')
-// })
-
-
-export {app}
+export { app };
