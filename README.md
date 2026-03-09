@@ -1,9 +1,9 @@
 # Blog API
 
-This is a simple REST API for a blog system built with **Node.js, Express, and MongoDB**.
+This is a simple REST API for a blog system built using **Node.js, Express.js, and MongoDB**.
 It supports user authentication with JWT and allows authenticated users to create, update, and delete their own blog posts.
 
-The project was created as part of a backend assignment to demonstrate API design, authentication, and database modeling.
+This project was developed as part of a backend assignment to demonstrate **API design, authentication, authorization, and database modeling**.
 
 ---
 
@@ -13,7 +13,7 @@ The project was created as part of a backend assignment to demonstrate API desig
 * Express.js
 * MongoDB
 * Mongoose
-* JWT authentication
+* JWT (JSON Web Token) authentication
 * bcrypt for password hashing
 
 ---
@@ -53,11 +53,11 @@ server.js
 
 ## Database Design
 
-The project has two main collections: **User** and **BlogPost**.
+The project uses two main collections: **User** and **BlogPost**.
+
+### User Collection
 
 ```
-User
-------
 _id
 name
 email
@@ -67,9 +67,9 @@ createdAt
 updatedAt
 ```
 
+### BlogPost Collection
+
 ```
-BlogPost
----------
 _id
 title
 content
@@ -79,32 +79,38 @@ createdAt
 updatedAt
 ```
 
-Relationship:
+### Relationship
 
 ```
-User (1) ------< BlogPost (many)
+User (1) --------< BlogPost (many)
 ```
 
-One user can create multiple blog posts.
+One **User** can create multiple **Blog Posts**, while each **Blog Post belongs to one User**.
 
 ---
 
 ## Setup Instructions
 
-Clone the repository:
+### 1. Clone the Repository
 
 ```
-git https://github.com/ms-sadiya/Backend-of-Blog-post.git
+git clone https://github.com/ms-sadiya/Backend-of-Blog-post.git
 cd Backend-of-Blog-post
 ```
 
-Install dependencies:
+---
+
+### 2. Install Dependencies
 
 ```
 npm install
 ```
 
-Create a `.env` file:
+---
+
+### 3. Create `.env` File
+
+Create a `.env` file in the root directory and add the following environment variables:
 
 ```
 PORT=8000
@@ -122,13 +128,17 @@ CORS_ORIGIN=http://localhost:5173
 NODE_ENV=development
 ```
 
-Run the server:
+You can also refer to `.env.example` for reference.
+
+---
+
+### 4. Run the Server
 
 ```
 npm run dev
 ```
 
-Server runs at:
+Server will run at:
 
 ```
 http://localhost:8000
@@ -138,7 +148,7 @@ http://localhost:8000
 
 ## API Routes
 
-### Auth Routes
+### Authentication Routes
 
 ```
 POST   /api/v1/user/register
@@ -147,6 +157,8 @@ POST   /api/v1/user/logout
 POST   /api/v1/user/refresh-token
 GET    /api/v1/user/current-user
 ```
+
+---
 
 ### Blog Routes
 
@@ -178,14 +190,28 @@ GET /api/v1/blogs?search=node
 
 ## Authentication
 
-Protected routes require an access token:
+Protected routes require a **JWT access token**.
+
+Example header:
 
 ```
-Authorization: Bearer <token>
+Authorization: Bearer <access_token>
 ```
 
 ---
 
 ## Testing
 
-The API can be tested using Postman or any API client.
+The API can be tested using:
+
+* Postman
+* Thunder Client
+* Insomnia
+
+A **Postman collection and environment file** are included in the repository for easier testing.
+
+---
+
+## Author
+
+Developed by **Ansari Sadiya**
