@@ -16,9 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.send('Blog Api is running')
-})
+import userRouter from "./src/routes/user.route.js";
+
+app.use("/api/v1/user", userRouter)
+// app.get('/', (req, res) => {
+//   res.send('Blog Api is running')
+// })
 
 
 export {app}
