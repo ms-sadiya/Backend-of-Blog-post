@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRouter from "./src/routes/user.route.js";
-
+import blogRouter from "./src/routes/blog.route.js"
 
 const app = express();
 
@@ -21,5 +21,6 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/blogs", blogRouter);
 
 export { app };

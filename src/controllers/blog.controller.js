@@ -12,10 +12,10 @@ const createBlogPost = asyncHandler(async (req, res) => {
   }
 
   const blog = await BlogPost.create({
+    author: req.user._id,
     title,
     content,
     tags,
-    author: req.user._id,
   });
 
   return res
@@ -34,7 +34,7 @@ const getAllBlogPosts = asyncHandler(async (req, res) => {
   }
 
   const blogs = await BlogPost.find(query)
-    .populate("author", "name email")
+    .populate("author", "_id name")
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(Number(limit));
